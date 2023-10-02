@@ -1,0 +1,11 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: >
+  Finovance-banking-functions
+
+Resources:
+
+Outputs:
+  ApiDefaultEndpoint:
+    Description: 'API Gateway default URL'
+    Value: !Sub 'https://${Api}.execute-api.${AWS::Region}.amazonaws.com/${stage}/'

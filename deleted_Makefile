@@ -1,0 +1,76 @@
+.PHONY: build-RuntimeDependenciesLayer build-lambda-common
+.PHONY: build-helloWorld
+
+build-helloWorld: build-lambda-common
+
+build-lambda-common:
+	npm install
+	npm run build
+	cp -r dist "$(ARTIFACTS_DIR)/"
+
+build-RuntimeDependenciesLayer:
+	mkdir -p "$(ARTIFACTS_DIR)/nodejs"
+	cp package.json package-lock.json "$(ARTIFACTS_DIR)/nodejs/"
+	npm install --prefix "$(ARTIFACTS_DIR)/nodejs/"
+	rm "$(ARTIFACTS_DIR)/nodejs/package.json" # to avoid rebuilding when changes doesn't relate to dependencies
+
+
+
+# .PHONY: build-RuntimeDependenciesLayer build-lambda-common
+# .PHONY: build-helloWorld
+
+# build-helloWorld:
+# 	$(MAKE) HANDLER=src/services/hello/hello-world/handler.ts build-lambda-common
+
+# build-resourcesPermissionsGet:
+# 	$(MAKE) HANDLER=src/services/resources/resources-permissions-get/handler.ts build-lambda-common
+# build-resourcesPermissionsPost:
+# 	$(MAKE) HANDLER=src/services/resources/resources-permissions-post/handler.ts build-lambda-common
+# build-resourcesPermissionsPut:
+# 	$(MAKE) HANDLER=src/services/resources/resources-permissions-put/handler.ts build-lambda-common
+# build-resourcesPermissionsDelete:
+# 	$(MAKE) HANDLER=src/services/resources/resources-permissions-delete/handler.ts build-lambda-common
+
+# build-usersPermissionsGet:
+# 	$(MAKE) HANDLER=src/services/users/users-permissions-get/handler.ts build-lambda-common
+# build-usersPermissionsPost:
+# 	$(MAKE) HANDLER=src/services/users/users-permissions-post/handler.ts build-lambda-common
+# build-usersPermissionsPut:
+# 	$(MAKE) HANDLER=src/services/users/users-permissions-put/handler.ts build-lambda-common
+# build-usersPermissionsDelete:
+# 	$(MAKE) HANDLER=src/services/users/users-permissions-delete/handler.ts build-lambda-common
+
+# build-formsQuickEnquiriesPost:
+# 	$(MAKE) HANDLER=src/services/forms/quickEnquiries-post/handler.ts build-lambda-common
+# build-formsNewslettersDefaultSubscriptionsPost:
+# 	$(MAKE) HANDLER=src/services/forms/newsletters-default-subscriptions-post/handler.ts build-lambda-common
+
+# build-auth2UserPostConfirmation:
+# 	$(MAKE) HANDLER=src/services/auth2/user-post-confirmation/handler.ts build-lambda-common
+
+# build-organisationsAccountingCompanies:
+# 	$(MAKE) HANDLER=src/services/organisations/organisations-accounting/companies-post/handler.ts build-lambda-common
+
+# build-organisationsAccountingConnections:
+# 	$(MAKE) HANDLER=src/services/organisations/organisations-accounting/create-codat-connection/handler.ts build-lambda-common
+
+# build-organisationsAccountingRetrieveJournalEntries:
+# 	$(MAKE) HANDLER=src/services/organisations/organisations-accounting/retrieve-codat-journalEntries/handler.ts build-lambda-common
+
+# build-organisationsBankingTransactionsPost:
+# 	$(MAKE) HANDLER=src/services/organisations/organisations-banking/transactions-post/handler.ts build-lambda-common
+
+
+# build-lambda-common:
+# 	npm install
+# 	rm -rf dist
+# 	npm run build
+# 	cp -r dist "$(ARTIFACTS_DIR)/"
+
+# build-RuntimeDependenciesLayer:
+# 	echo $ARTIFACTS_DIR
+# 	mkdir -p "$(ARTIFACTS_DIR)/nodejs"
+# 	cp package.json package-lock.json "$(ARTIFACTS_DIR)/nodejs/"
+# 	npm install --production --prefix "$(ARTIFACTS_DIR)/nodejs/"
+# 	rm "$(ARTIFACTS_DIR)/nodejs/package.json" # to avoid rebuilding when changes doesn't relate to dependencies
+
