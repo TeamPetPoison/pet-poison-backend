@@ -3,11 +3,16 @@ Transform: AWS::Serverless-2016-10-31
 Description: >
   pet-poison-backend-functions
 
+Parameters:
+  stage:
+    Type: String
+    Description: Stage of environment (dev, stage or prod)
+
 Resources:
   CoreBankingTpRegisterAccountsTable:
     Type: AWS::DynamoDB::Table
     Properties:
-      TableName: 'dev-banking-treasury-prime-accounts'
+      TableName: !Sub '${stage}-banking-treasury-prime-accounts'
       AttributeDefinitions:
         - AttributeName: 'organization_id'
           AttributeType: 'S'
