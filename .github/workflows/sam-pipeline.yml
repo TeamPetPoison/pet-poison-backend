@@ -13,7 +13,7 @@ jobs:
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: 'ap-southeast-1'
+          aws-region: ${{ secrets.AWS_REGION }}
       # sam build
       - run: npm ci
       - run: npm run build
@@ -22,4 +22,4 @@ jobs:
       # Run Unit tests- Specify unit tests here
 
       # sam deploy
-      - run: sam deploy --no-confirm-changeset --no-fail-on-empty-changeset --stack-name pet-poison --s3-bucket amplify-cli-managed-hjddhdbsdhe --capabilities CAPABILITY_IAM --region ap-southeast-1
+      - run: sam deploy --no-confirm-changeset --no-fail-on-empty-changeset --stack-name pet-poison --s3-bucket amplify-cli-managed-hjddhdbsdhe --capabilities CAPABILITY_IAM --region ${{ secrets.AWS_REGION }}
