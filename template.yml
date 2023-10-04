@@ -19,8 +19,7 @@ Resources:
         - AttributeName: 'person_application_id'
           KeyType: RANGE
       BillingMode: PAY_PER_REQUEST
-
-Outputs:
-  ApiDefaultEndpoint:
-    Description: 'API Gateway default URL'
-    Value: !Sub 'https://${Api}.execute-api.${AWS::Region}.amazonaws.com/${stage}/'
+# Outputs:
+#   ApiDefaultEndpoint:
+#     Description: 'API Gateway default URL'
+#     Value: !Sub 'https://${Api}.execute-api.${AWS::Region}.amazonaws.com/${stage}/'
