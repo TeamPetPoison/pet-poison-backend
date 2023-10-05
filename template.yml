@@ -9,6 +9,42 @@ Parameters:
     Description: Stage of environment (dev, stage or prod)
 
 Resources:
+  UserPool:
+    Type: AWS::Cognito::UserPool
+    Properties:
+      UserPoolName: !Sub '${stage}-PetPoisonUserPool'
+      UsernameAttributes:
+        - email
+      AutoVerifiedAttributes:
+        - email
+      Policies:
+        PasswordPolicy:
+          MinimumLength: 8
+          RequireUppercase: true
+          RequireLowercase: true
+          RequireNumbers: true
+          RequireSymbols: true
+      Schema:
+        - AttributeDataType: String
+          Name: email
+          Required: true
+
+  AppClient:
+    Type: AWS::Cognito::UserPoolClient
+    Properties:
+      UserPoolId: !Ref UserPool
+      ClientName: !Sub '${stage}-PetPoisonRegistrationAppClient'
+      GenerateSecret: false # Set this to false to create an app client with no secret
+      ExplicitAuthFlows:
+        - USER_PASSWORD_AUTH
+      # EmailVerificationSubject: "Verify your email for our app"
+      # EmailVerificationMessage: "Thanks for signing up with our app! Your verification code is {####}."
+      # AdminCreateUserConfig:
+      #   AllowAdminCreateUserOnly: false
+      #   InviteMessageTemplate:
+      #     EmailMessage: "Hello {username},\n\nYou have been invited to join our app. Click the link below to create an account:\n\n{####}\n\nThanks,\nThe Team"
+      #     EmailSubject: "Invitation to join our app"
+
   CoreBankingTpRegisterAccountsTable:
     Type: AWS::DynamoDB::Table
     Properties:
