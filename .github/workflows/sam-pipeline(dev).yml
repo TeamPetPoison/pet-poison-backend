@@ -1,10 +1,12 @@
-name: Build and Deploy (Prod)
+name: Build and Deploy (Dev)
 
 on:
-  workflow_dispatch:
+  push:
+    branches:
+      - main
 
 jobs:
-  build-deploy-prod:
+  build-deploy-dev:
     runs-on: ubuntu-latest
 
     steps:
@@ -37,6 +39,6 @@ jobs:
       - name: Deploy SAM Application
         run: |
           sam deploy --no-confirm-changeset --no-fail-on-empty-changeset \
-            --stack-name pet-poison --s3-bucket amplify-cli-managed-hjddhdbsdhe \
+            --stack-name dev-petpoison --s3-bucket amplify-cli-managed-hjddhdbsdhe \
             --capabilities CAPABILITY_IAM --region ${{ secrets.AWS_REGION }} \
-            --parameter-overrides stage=prod
+            --parameter-overrides stage=dev
