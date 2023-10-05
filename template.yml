@@ -45,21 +45,21 @@ Resources:
       #     EmailMessage: "Hello {username},\n\nYou have been invited to join our app. Click the link below to create an account:\n\n{####}\n\nThanks,\nThe Team"
       #     EmailSubject: "Invitation to join our app"
 
-  CoreBankingTpRegisterAccountsTable:
-    Type: AWS::DynamoDB::Table
-    Properties:
-      TableName: !Sub '${stage}-banking-treasury-prime-accounts'
-      AttributeDefinitions:
-        - AttributeName: 'organization_id'
-          AttributeType: 'S'
-        - AttributeName: 'person_application_id'
-          AttributeType: 'S'
-      KeySchema:
-        - AttributeName: 'organization_id'
-          KeyType: HASH
-        - AttributeName: 'person_application_id'
-          KeyType: RANGE
-      BillingMode: PAY_PER_REQUEST
+  # CoreBankingTpRegisterAccountsTable:
+  #   Type: AWS::DynamoDB::Table
+  #   Properties:
+  #     TableName: !Sub '${stage}-banking-treasury-prime-accounts'
+  #     AttributeDefinitions:
+  #       - AttributeName: 'organization_id'
+  #         AttributeType: 'S'
+  #       - AttributeName: 'person_application_id'
+  #         AttributeType: 'S'
+  #     KeySchema:
+  #       - AttributeName: 'organization_id'
+  #         KeyType: HASH
+  #       - AttributeName: 'person_application_id'
+  #         KeyType: RANGE
+  #     BillingMode: PAY_PER_REQUEST
 # Outputs:
 #   ApiDefaultEndpoint:
 #     Description: 'API Gateway default URL'
