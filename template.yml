@@ -37,13 +37,13 @@ Resources:
       GenerateSecret: false # Set this to false to create an app client with no secret
       ExplicitAuthFlows:
         - USER_PASSWORD_AUTH
-      # EmailVerificationSubject: "Verify your email for our app"
-      # EmailVerificationMessage: "Thanks for signing up with our app! Your verification code is {####}."
-      # AdminCreateUserConfig:
-      #   AllowAdminCreateUserOnly: false
-      #   InviteMessageTemplate:
-      #     EmailMessage: "Hello {username},\n\nYou have been invited to join our app. Click the link below to create an account:\n\n{####}\n\nThanks,\nThe Team"
-      #     EmailSubject: "Invitation to join our app"
+      EmailVerificationSubject: 'Verify your email for our app'
+      EmailVerificationMessage: 'Thanks for signing up with our app! Your verification code is {####}.'
+      AdminCreateUserConfig:
+        AllowAdminCreateUserOnly: false
+        InviteMessageTemplate:
+          EmailMessage: "Hello {username},\n\nYou have been invited to join our app. Click the link below to create an account:\n\n{####}\n\nThanks,\nThe Team"
+          EmailSubject: 'Invitation to join our app'
 
   # CoreBankingTpRegisterAccountsTable:
   #   Type: AWS::DynamoDB::Table
